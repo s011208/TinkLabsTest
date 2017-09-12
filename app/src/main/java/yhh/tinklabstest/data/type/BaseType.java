@@ -29,7 +29,7 @@ public class BaseType {
 
     public BaseType(@BaseTypeAnnotation int type, @NonNull String imageURL) {
         mType = type;
-        mImageURL = "file:///android_asset/" + imageURL;
+        mImageURL = imageURL;
         mUUID = UUID.randomUUID().toString();
     }
 
