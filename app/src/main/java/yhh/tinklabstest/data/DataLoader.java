@@ -2,6 +2,7 @@ package yhh.tinklabstest.data;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.support.annotation.IntDef;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -20,6 +21,11 @@ public class DataLoader implements LoadDataTask.Callback {
     public static final String FILE_NAME_CITY_GUIDE = "city_guide";
     public static final String FILE_NAME_EAT = "eat";
     public static final String FILE_NAME_SHOP = "shop";
+
+    @IntDef({DATA_TYPE_CITY_GUIDE, DATA_TYPE_EAT, DATA_TYPE_SHOP})
+
+    @interface TabType {
+    }
 
     public static final int DATA_TYPE_CITY_GUIDE = 0;
     public static final int DATA_TYPE_EAT = 1;
@@ -107,7 +113,7 @@ public class DataLoader implements LoadDataTask.Callback {
         }
     }
 
-    @BaseType.BaseTypeAnnotation
+    @TabType
     private int getDataType() {
         return mDataType;
     }

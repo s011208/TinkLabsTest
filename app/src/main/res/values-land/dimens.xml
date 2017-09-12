@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="holder_type_image_width">240dp</dimen>
     <dimen name="holder_type_large_image_height">400dp</dimen>
 </resources>

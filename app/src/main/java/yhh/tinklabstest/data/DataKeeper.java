@@ -11,7 +11,7 @@ import yhh.tinklabstest.data.type.BaseType;
 public class DataKeeper {
     private final SparseArray<List<BaseType>> mDataSparseArray = new SparseArray<>();
 
-    void addData(@BaseType.BaseTypeAnnotation int type, @NonNull List<BaseType> items) {
+    void addData(@DataLoader.TabType int type, @NonNull List<BaseType> items) {
         synchronized (mDataSparseArray) {
             List<BaseType> data = mDataSparseArray.get(type, new ArrayList<BaseType>());
             data.addAll(items);
@@ -20,7 +20,7 @@ public class DataKeeper {
     }
 
     @NonNull
-    public List<BaseType> getItems(@BaseType.BaseTypeAnnotation int type) {
+    public List<BaseType> getItems(@DataLoader.TabType int type) {
         synchronized (mDataSparseArray) {
             return new ArrayList<>(mDataSparseArray.get(type, new ArrayList<BaseType>()));
         }
