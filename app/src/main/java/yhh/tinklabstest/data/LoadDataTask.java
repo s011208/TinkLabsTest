@@ -78,6 +78,12 @@ class LoadDataTask extends AsyncTask<Void, Void, List<BaseType>> {
         // shuffle list for fun
         Collections.shuffle(rtn);
 
+        // Because data is loaded in local, simulating a tiny delay for performing UI
+        try {
+            Thread.sleep((int) (Math.random() * 10000) % 1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return rtn;
     }
 }
