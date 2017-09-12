@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">"TinkLabsTest"</string>
+    <string name="tab_city_guide">"City guide"</string>
+    <string name="tab_shop">"Shop"</string>
+    <string name="tab_eat">"Eat"</string>
+</resources>

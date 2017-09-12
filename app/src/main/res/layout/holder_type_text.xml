@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:baselineAligned="false"
+    android:orientation="horizontal"
+    android:padding="@dimen/holder_base_padding">
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="@dimen/holder_type_text_height"
+        android:layout_height="@dimen/holder_type_text_height" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/holder_type_text_height"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:maxLines="1"
+            android:paddingLeft="@dimen/holder_type_text_horizontal_padding"
+            android:paddingRight="@dimen/holder_type_text_horizontal_padding"
+            android:textColor="#000000"
+            android:textSize="@dimen/holder_type_text_title_text_size"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:maxLines="3"
+            android:paddingLeft="@dimen/holder_type_text_horizontal_padding"
+            android:paddingRight="@dimen/holder_type_text_horizontal_padding"
+            android:textColor="#333333"
+            android:textSize="@dimen/holder_type_text_text_text_size" />
+    </LinearLayout>
+</LinearLayout>

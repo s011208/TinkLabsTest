@@ -1,0 +1,40 @@
+[
+  {
+    "dataType":"Text",
+    "imageUrl":"xie_r.jpg",
+    "text":"西門町應該是每個人第一次遊台北都必定會去的行程之一，旅遊書總會形容這個地方是「年青人潮流勝地」，但多年前第一次去的時候感覺真的不太好，簡單來說這就是一個很MK的地方。",
+    "title":"西門紅樓"
+  },
+  {
+    "dataType":"Image",
+    "imageUrl":"cks.jpg"
+  },
+  {
+    "dataType":"Text",
+    "imageUrl":"ferris_wheel.jpg",
+    "text":"記得還小的時候，常常吵著爸爸跟媽媽要出門玩，加上學校又常常暑假作業都叫我們要拿個存根票。",
+    "title":"新兒童樂園"
+  },
+  {
+    "dataType":"Text",
+    "imageUrl":"beitou.jpg",
+    "text":"隱身山嵐綠意間的北投麗禧溫泉酒店，得天獨厚地理位置，讓旅人們享受舒淇等明星級般的待遇，床旁大片景觀落地窗與北投最高戶外泡湯池，免出房門就能看著美景入浴，更被選為全台第一好湯！",
+    "title":"北投溫泉"
+  },
+  {
+    "dataType":"Text",
+    "imageUrl":"rainbow_bridge.jpg",
+    "text":"新興的夜拍景點，算是台北夜拍橋樑中數一數二的",
+    "title":"彩虹橋"
+  },
+  {
+    "dataType":"Text",
+    "imageUrl":"taipei_101.jpg",
+    "title":"台北101",
+    "text":"台北101（TAIPEI 101）是位於臺灣臺北市信義區的辦公摩天大樓，樓高509.2公尺（1,671英尺），地上樓層共有101層、另有地下5層，總樓地板面積37萬4千平方公尺。"
+  },
+  {
+    "dataType":"Image",
+    "imageUrl":"c289_1.jpg"
+  }
+]
