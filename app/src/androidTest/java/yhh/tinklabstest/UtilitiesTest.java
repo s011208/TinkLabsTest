@@ -15,10 +15,6 @@ import yhh.tinklabstest.util.Utilities;
 
 import static junit.framework.Assert.assertEquals;
 
-/**
- * Created by s011208 on 2017/9/12.
- */
-
 @RunWith(AndroidJUnit4.class)
 public class UtilitiesTest {
 

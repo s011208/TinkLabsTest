@@ -3,6 +3,7 @@ package yhh.tinklabstest.data;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import java.lang.ref.WeakReference;
@@ -52,15 +53,26 @@ public class DataLoader implements LoadDataTask.Callback {
         mCallback = new WeakReference<>(cb);
     }
 
-    public void load() {
-        Context context = mContext.get();
+    @Nullable
+    public LoadDataTask getLoadDataTask(Context context, LoadDataTask.Callback cb, String fileName) {
         if (context == null) {
             if (DEBUG) {
                 Log.w(TAG, "failed to load, context is null");
             }
+            return null;
+        }
+        return new LoadDataTask(context, cb, fileName);
+    }
+
+    public void load() {
+        LoadDataTask loadDataTask = getLoadDataTask(mContext.get(), this, mAssetsFileName);
+        if (loadDataTask == null) {
+            if (DEBUG) {
+                Log.w(TAG, "failed to load, loadDataTask is null");
+            }
             return;
         }
-        new LoadDataTask(context, this, mAssetsFileName).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+        loadDataTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
         Callback callback = mCallback.get();
         if (callback == null) {
