@@ -1,4 +1,5 @@
 <resources>
+    <string name="app_name">"TinkLabsTest"</string>
     <string name="tab_city_guide">"城市導覽"</string>
     <string name="tab_shop">"購物"</string>
     <string name="tab_eat">"美食"</string>

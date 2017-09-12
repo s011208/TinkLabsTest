@@ -1,5 +1,7 @@
 package yhh.tinklabstest.data.type;
 
+import android.support.annotation.NonNull;
+
 import java.util.UUID;
 
 public class BaseType {

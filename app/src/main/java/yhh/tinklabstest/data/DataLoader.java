@@ -9,6 +9,7 @@ import android.util.Log;
 import java.lang.ref.WeakReference;
 import java.util.List;
 
+import yhh.tinklabstest.MyApplication;
 import yhh.tinklabstest.data.type.BaseType;
 
 public class DataLoader implements LoadDataTask.Callback {
@@ -19,9 +20,9 @@ public class DataLoader implements LoadDataTask.Callback {
     public static final String FILE_NAME_EAT = "eat";
     public static final String FILE_NAME_SHOP = "shop";
 
-    private static final int DATA_TYPE_CITY_GUIDE = 0;
-    private static final int DATA_TYPE_EAT = 1;
-    private static final int DATA_TYPE_SHOP = 2;
+    public static final int DATA_TYPE_CITY_GUIDE = 0;
+    public static final int DATA_TYPE_EAT = 1;
+    public static final int DATA_TYPE_SHOP = 2;
 
     public interface Callback {
         void onStartLoading();
@@ -33,7 +34,7 @@ public class DataLoader implements LoadDataTask.Callback {
     private WeakReference<Callback> mCallback;
     private final String mAssetsFileName;
     private final int mDataType;
-    private DataKeeper mDataKeeper = DataKeeper.getInstance();
+    private final DataKeeper mDataKeeper;
 
     public DataLoader(Context context, String assetsFileName) {
         mContext = new WeakReference<>(context);
@@ -47,6 +48,7 @@ public class DataLoader implements LoadDataTask.Callback {
         } else {
             throw new UnsupportedOperationException();
         }
+        mDataKeeper = ((MyApplication)context.getApplicationContext()).getApplicationComponent().getDataKeeper();
     }
 
     public void setCallback(@NonNull Callback cb) {

@@ -11,19 +11,10 @@ import yhh.tinklabstest.data.type.BaseType;
  * singleton
  */
 
-class DataKeeper {
-    private static DataKeeper sInstance;
-
-    synchronized static DataKeeper getInstance() {
-        if (sInstance == null) {
-            sInstance = new DataKeeper();
-        }
-        return sInstance;
-    }
-
+public class DataKeeper {
     private final SparseArray<List<BaseType>> mDataSparseArray = new SparseArray<>();
 
-    private DataKeeper() {
+    public DataKeeper() {
     }
 
     void addData(int type, List<BaseType> items) {
@@ -34,7 +25,7 @@ class DataKeeper {
         }
     }
 
-    List<BaseType> getItems(int type) {
+    public List<BaseType> getItems(int type) {
         synchronized (mDataSparseArray) {
             return new ArrayList<>(mDataSparseArray.get(type, new ArrayList<BaseType>()));
         }
