@@ -53,7 +53,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     public void startLoading() {
-        mBaseType.add(new ProgressBarType(0, null));
+        mBaseType.add(new ProgressBarType(BaseType.TYPE_PROGRESS_BAR, ""));
         notifyItemInserted(getItemCount() - 1);
     }
 

@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 
 import java.lang.ref.WeakReference;
+import java.util.ArrayList;
 import java.util.List;
 
 import yhh.tinklabstest.MyApplication;
@@ -34,21 +35,25 @@ public class DataLoader implements LoadDataTask.Callback {
     private WeakReference<Callback> mCallback;
     private final String mAssetsFileName;
     private final int mDataType;
-    private final DataKeeper mDataKeeper;
+    private final WeakReference<DataKeeper> mDataKeeper;
 
-    public DataLoader(Context context, String assetsFileName) {
+    public DataLoader(@NonNull Context context, @NonNull String assetsFileName) {
         mContext = new WeakReference<>(context);
         mAssetsFileName = assetsFileName;
-        if (FILE_NAME_CITY_GUIDE.equals(assetsFileName)) {
-            mDataType = DATA_TYPE_CITY_GUIDE;
-        } else if (FILE_NAME_EAT.equals(assetsFileName)) {
-            mDataType = DATA_TYPE_EAT;
-        } else if (FILE_NAME_SHOP.equals(assetsFileName)) {
-            mDataType = DATA_TYPE_SHOP;
-        } else {
-            throw new UnsupportedOperationException();
+        switch (assetsFileName) {
+            case FILE_NAME_CITY_GUIDE:
+                mDataType = DATA_TYPE_CITY_GUIDE;
+                break;
+            case FILE_NAME_EAT:
+                mDataType = DATA_TYPE_EAT;
+                break;
+            case FILE_NAME_SHOP:
+                mDataType = DATA_TYPE_SHOP;
+                break;
+            default:
+                throw new UnsupportedOperationException();
         }
-        mDataKeeper = ((MyApplication)context.getApplicationContext()).getApplicationComponent().getDataKeeper();
+        mDataKeeper = new WeakReference<>(((MyApplication) context.getApplicationContext()).getApplicationComponent().getDataKeeper());
     }
 
     public void setCallback(@NonNull Callback cb) {
@@ -56,7 +61,7 @@ public class DataLoader implements LoadDataTask.Callback {
     }
 
     @Nullable
-    public LoadDataTask getLoadDataTask(Context context, LoadDataTask.Callback cb, String fileName) {
+    private LoadDataTask getLoadDataTask(Context context, LoadDataTask.Callback cb, String fileName) {
         if (context == null) {
             if (DEBUG) {
                 Log.w(TAG, "failed to load, context is null");
@@ -95,15 +100,25 @@ public class DataLoader implements LoadDataTask.Callback {
             }
             return;
         }
-        mDataKeeper.addData(mDataType, items);
-        callback.onFinishLoading();
+        DataKeeper dataKeeper = mDataKeeper.get();
+        if (dataKeeper != null) {
+            dataKeeper.addData(mDataType, items);
+            callback.onFinishLoading();
+        }
     }
 
+    @BaseType.BaseTypeAnnotation
     private int getDataType() {
         return mDataType;
     }
 
+    @NonNull
     public List<BaseType> getData() {
-        return mDataKeeper.getItems(getDataType());
+        DataKeeper dataKeeper = mDataKeeper.get();
+        if (dataKeeper != null) {
+            return dataKeeper.getItems(getDataType());
+        } else {
+            return new ArrayList<>();
+        }
     }
 }

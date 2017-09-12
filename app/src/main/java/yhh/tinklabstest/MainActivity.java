@@ -13,7 +13,6 @@ public class MainActivity extends AppCompatActivity {
     private static final String SELECTED_TAB = "selected_tab";
 
     private TabLayout mTabLayout;
-    private ViewPager mViewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,13 +24,13 @@ public class MainActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayShowTitleEnabled(false);
         }
 
-        mViewPager = (ViewPager) findViewById(R.id.viewpager);
+        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager(), MainActivity.this);
 
-        mViewPager.setAdapter(adapter);
+        viewPager.setAdapter(adapter);
 
         mTabLayout = (TabLayout) findViewById(R.id.tabs);
-        mTabLayout.setupWithViewPager(mViewPager);
+        mTabLayout.setupWithViewPager(viewPager);
         if (savedInstanceState != null) {
             TabLayout.Tab selectedTab = mTabLayout.getTabAt(savedInstanceState.getInt(SELECTED_TAB, 0));
             if (selectedTab != null) {

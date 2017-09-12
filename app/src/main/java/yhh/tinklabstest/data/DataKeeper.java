@@ -1,5 +1,6 @@
 package yhh.tinklabstest.data;
 
+import android.support.annotation.NonNull;
 import android.util.SparseArray;
 
 import java.util.ArrayList;
@@ -7,17 +8,10 @@ import java.util.List;
 
 import yhh.tinklabstest.data.type.BaseType;
 
-/**
- * singleton
- */
-
 public class DataKeeper {
     private final SparseArray<List<BaseType>> mDataSparseArray = new SparseArray<>();
 
-    public DataKeeper() {
-    }
-
-    void addData(int type, List<BaseType> items) {
+    void addData(@BaseType.BaseTypeAnnotation int type, @NonNull List<BaseType> items) {
         synchronized (mDataSparseArray) {
             List<BaseType> data = mDataSparseArray.get(type, new ArrayList<BaseType>());
             data.addAll(items);
@@ -25,7 +19,8 @@ public class DataKeeper {
         }
     }
 
-    public List<BaseType> getItems(int type) {
+    @NonNull
+    public List<BaseType> getItems(@BaseType.BaseTypeAnnotation int type) {
         synchronized (mDataSparseArray) {
             return new ArrayList<>(mDataSparseArray.get(type, new ArrayList<BaseType>()));
         }

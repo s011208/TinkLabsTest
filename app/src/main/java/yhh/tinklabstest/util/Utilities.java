@@ -12,6 +12,7 @@ public class Utilities {
     private Utilities() {
     }
 
+    @NonNull
     public static String readStringFromAssets(@NonNull final Context context, @NonNull final String fileName) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(context.getAssets().open(fileName)));
         StringBuilder sb = new StringBuilder();

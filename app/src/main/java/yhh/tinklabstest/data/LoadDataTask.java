@@ -22,9 +22,9 @@ import yhh.tinklabstest.util.Utilities;
  * Data loader
  */
 
-public class LoadDataTask extends AsyncTask<Void, Void, List<BaseType>> {
+class LoadDataTask extends AsyncTask<Void, Void, List<BaseType>> {
 
-    public interface Callback {
+    interface Callback {
         void onLoadFinish(List<BaseType> items);
     }
 
@@ -32,7 +32,7 @@ public class LoadDataTask extends AsyncTask<Void, Void, List<BaseType>> {
     private final WeakReference<Callback> mCallback;
     private final String mFileName;
 
-    protected LoadDataTask(Context context, Callback cb, String fileName) {
+    LoadDataTask(Context context, Callback cb, String fileName) {
         mContext = new WeakReference<>(context);
         mCallback = new WeakReference<>(cb);
         mFileName = fileName;
