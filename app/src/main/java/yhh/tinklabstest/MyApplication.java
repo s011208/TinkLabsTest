@@ -7,7 +7,7 @@ import yhh.tinklabstest.component.DaggerApplicationComponent;
 import yhh.tinklabstest.module.ApplicationModule;
 
 public class MyApplication extends Application {
-    ApplicationComponent mApplicationComponent;
+    private ApplicationComponent mApplicationComponent;
 
     public ApplicationComponent getApplicationComponent() {
         if (mApplicationComponent == null) {

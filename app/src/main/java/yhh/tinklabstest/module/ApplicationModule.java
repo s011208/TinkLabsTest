@@ -11,8 +11,8 @@ import yhh.tinklabstest.data.DataKeeper;
 @Module
 public class ApplicationModule {
 
-    Application mApplication;
-    DataKeeper mDataKeeper = new DataKeeper();
+    private Application mApplication;
+    private DataKeeper mDataKeeper = new DataKeeper();
 
     public ApplicationModule(Application application) {
         mApplication = application;
