@@ -4,15 +4,13 @@ import android.app.Application;
 
 import yhh.tinklabstest.component.ApplicationComponent;
 import yhh.tinklabstest.component.DaggerApplicationComponent;
-import yhh.tinklabstest.module.ApplicationModule;
 
 public class MyApplication extends Application {
     private ApplicationComponent mApplicationComponent;
 
     public ApplicationComponent getApplicationComponent() {
         if (mApplicationComponent == null) {
-            mApplicationComponent = DaggerApplicationComponent.builder()
-                    .applicationModule(new ApplicationModule()).build();
+            mApplicationComponent = DaggerApplicationComponent.create();
         }
         return mApplicationComponent;
     }

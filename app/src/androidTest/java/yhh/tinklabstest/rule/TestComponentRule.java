@@ -10,7 +10,6 @@ import yhh.tinklabstest.MyApplication;
 import yhh.tinklabstest.components.DaggerTestComponent;
 import yhh.tinklabstest.components.TestComponent;
 import yhh.tinklabstest.data.DataKeeper;
-import yhh.tinklabstest.module.TestApplicationModule;
 
 public class TestComponentRule implements TestRule {
     private TestComponent mTestComponent;
@@ -18,7 +17,7 @@ public class TestComponentRule implements TestRule {
 
     public TestComponentRule(Context context) {
         mContext = context;
-        mTestComponent = DaggerTestComponent.builder().testApplicationModule(new TestApplicationModule()).build();
+        mTestComponent = DaggerTestComponent.create();
     }
 
     public DataKeeper getDataKeeper() {
