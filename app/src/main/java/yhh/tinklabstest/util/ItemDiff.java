@@ -6,6 +6,9 @@ import java.util.List;
 
 import yhh.tinklabstest.data.type.BaseType;
 
+/**
+ * check the different between two lists and update for RecyclerView
+ */
 public class ItemDiff extends DiffUtil.Callback {
     private List<? extends BaseType> mOldList;
     private List<? extends BaseType> mNewList;

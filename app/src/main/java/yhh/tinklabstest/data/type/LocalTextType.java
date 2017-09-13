@@ -2,6 +2,9 @@ package yhh.tinklabstest.data.type;
 
 import android.support.annotation.NonNull;
 
+/**
+ * Local data with title, description and image
+ */
 public class LocalTextType extends BaseLocalType {
     public static final String KEY_TEXT = "text";
     public static final String KEY_TITLE = "title";

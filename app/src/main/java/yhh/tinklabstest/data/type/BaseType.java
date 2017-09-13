@@ -4,6 +4,9 @@ import android.support.annotation.NonNull;
 
 import java.util.UUID;
 
+/**
+ * Base data type
+ */
 public class BaseType {
 
     public static final String KEY_TYPE = "dataType";

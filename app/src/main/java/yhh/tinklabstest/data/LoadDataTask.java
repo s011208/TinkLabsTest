@@ -19,9 +19,8 @@ import yhh.tinklabstest.data.type.LocalTextType;
 import yhh.tinklabstest.util.Utilities;
 
 /**
- * Data loader
+ * Data loader task
  */
-
 class LoadDataTask extends AsyncTask<Void, Void, List<BaseType>> {
 
     interface Callback {

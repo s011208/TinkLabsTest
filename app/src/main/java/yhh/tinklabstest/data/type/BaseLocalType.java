@@ -2,6 +2,9 @@ package yhh.tinklabstest.data.type;
 
 import android.support.annotation.NonNull;
 
+/**
+ * Base data type from local
+ */
 class BaseLocalType extends BaseType {
     public static final String KEY_IMAGE_URL = "imageUrl";
     private final String mImageURL;
