@@ -19,7 +19,7 @@
         <TextView
             android:id="@+id/title"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="@dimen/holder_type_text_title_height"
             android:ellipsize="end"
             android:gravity="center_vertical"
             android:maxLines="1"
@@ -32,9 +32,8 @@
         <TextView
             android:id="@+id/text"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="@dimen/holder_type_text_text_height"
             android:ellipsize="end"
-            android:gravity="center_vertical"
             android:maxLines="3"
             android:paddingLeft="@dimen/holder_type_text_horizontal_padding"
             android:paddingRight="@dimen/holder_type_text_horizontal_padding"
