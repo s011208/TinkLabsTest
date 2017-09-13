@@ -12,7 +12,7 @@ public class MyApplication extends Application {
     public ApplicationComponent getApplicationComponent() {
         if (mApplicationComponent == null) {
             mApplicationComponent = DaggerApplicationComponent.builder()
-                    .applicationModule(new ApplicationModule(this)).build();
+                    .applicationModule(new ApplicationModule()).build();
         }
         return mApplicationComponent;
     }

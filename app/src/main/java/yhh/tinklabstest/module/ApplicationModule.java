@@ -1,7 +1,5 @@
 package yhh.tinklabstest.module;
 
-import android.app.Application;
-
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -11,17 +9,9 @@ import yhh.tinklabstest.data.DataKeeper;
 @Module
 public class ApplicationModule {
 
-    private Application mApplication;
-    private DataKeeper mDataKeeper = new DataKeeper();
+    private final DataKeeper mDataKeeper = new DataKeeper();
 
-    public ApplicationModule(Application application) {
-        mApplication = application;
-    }
-
-    @Provides
-    @Singleton
-    Application provideApplication() {
-        return mApplication;
+    public ApplicationModule() {
     }
 
     @Provides
@@ -29,5 +19,4 @@ public class ApplicationModule {
     public DataKeeper provideDataKeeper() {
         return mDataKeeper;
     }
-
 }
