@@ -21,9 +21,9 @@ import java.util.List;
 
 import yhh.tinklabstest.R;
 import yhh.tinklabstest.data.type.BaseType;
-import yhh.tinklabstest.data.type.ImageType;
+import yhh.tinklabstest.data.type.LocalImageType;
 import yhh.tinklabstest.data.type.ProgressBarType;
-import yhh.tinklabstest.data.type.TextType;
+import yhh.tinklabstest.data.type.LocalTextType;
 import yhh.tinklabstest.util.ItemDiff;
 
 
@@ -53,7 +53,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     public void startLoading() {
-        mBaseType.add(new ProgressBarType(BaseType.TYPE_PROGRESS_BAR, ""));
+        mBaseType.add(new ProgressBarType());
         notifyItemInserted(getItemCount() - 1);
     }
 
@@ -80,11 +80,11 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         final BaseType baseType = getItem(position);
         final int viewType = getItemViewType(position);
         if (TYPE_IMAGE == viewType) {
-            final ImageType imageType = (ImageType) baseType;
+            final LocalImageType localImageType = (LocalImageType) baseType;
             final ImageTypeViewHolder viewHolder = (ImageTypeViewHolder) holder;
             viewHolder.getLoadingView().setVisibility(View.VISIBLE);
             Glide.with(context)
-                    .load(Uri.parse(imageType.getImageURL()))
+                    .load(Uri.parse(localImageType.getImageURL()))
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .override(mLargeImageWidth, mLargeImageHeight)
                     .centerCrop()
@@ -103,15 +103,15 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                     })
                     .into(viewHolder.getImageView());
         } else if (TYPE_TEXT == viewType) {
-            TextType textType = (TextType) baseType;
+            LocalTextType localTextType = (LocalTextType) baseType;
             TextTypeViewHolder viewHolder = (TextTypeViewHolder) holder;
             Glide.with(context)
-                    .load(Uri.parse(textType.getImageURL()))
+                    .load(Uri.parse(localTextType.getImageURL()))
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .centerCrop()
                     .into(viewHolder.getImageView());
-            viewHolder.getText().setText(textType.getText());
-            viewHolder.getTitle().setText(textType.getTitle());
+            viewHolder.getText().setText(localTextType.getText());
+            viewHolder.getTitle().setText(localTextType.getTitle());
         } else //noinspection StatementWithEmptyBody
             if (TYPE_PROGRESS_BAR == viewType) {
             // do nothing
@@ -123,8 +123,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     @Override
     public int getItemViewType(int position) {
         BaseType item = getItem(position);
-        if (item instanceof ImageType) return TYPE_IMAGE;
-        else if (item instanceof TextType) return TYPE_TEXT;
+        if (item instanceof LocalImageType) return TYPE_IMAGE;
+        else if (item instanceof LocalTextType) return TYPE_TEXT;
         else if (item instanceof ProgressBarType) return TYPE_PROGRESS_BAR;
         else throw new UnsupportedOperationException();
     }

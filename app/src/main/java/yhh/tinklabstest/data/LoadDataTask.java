@@ -14,8 +14,8 @@ import java.util.Collections;
 import java.util.List;
 
 import yhh.tinklabstest.data.type.BaseType;
-import yhh.tinklabstest.data.type.ImageType;
-import yhh.tinklabstest.data.type.TextType;
+import yhh.tinklabstest.data.type.LocalImageType;
+import yhh.tinklabstest.data.type.LocalTextType;
 import yhh.tinklabstest.util.Utilities;
 
 /**
@@ -66,10 +66,10 @@ class LoadDataTask extends AsyncTask<Void, Void, List<BaseType>> {
             JSONObject jsonObject = jsonArray.getJSONObject(i);
             final String type = jsonObject.getString(BaseType.KEY_TYPE);
             if (BaseType.KEY_TYPE_IMAGE.equals(type)) {
-                rtn.add(new ImageType(ImageType.TYPE_IMAGE, jsonObject.getString(ImageType.KEY_IMAGE_URL)));
+                rtn.add(new LocalImageType(jsonObject.getString(LocalImageType.KEY_IMAGE_URL)));
             } else if (BaseType.KEY_TYPE_TEXT.equals(type)) {
-                rtn.add(new TextType(TextType.TYPE_TEXT, jsonObject.getString(TextType.KEY_IMAGE_URL),
-                        jsonObject.getString(TextType.KEY_TEXT), jsonObject.getString(TextType.KEY_TITLE)));
+                rtn.add(new LocalTextType(jsonObject.getString(LocalTextType.KEY_IMAGE_URL),
+                        jsonObject.getString(LocalTextType.KEY_TEXT), jsonObject.getString(LocalTextType.KEY_TITLE)));
             } else {
                 throw new UnsupportedOperationException();
             }
