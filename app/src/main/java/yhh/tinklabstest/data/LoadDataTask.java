@@ -21,7 +21,7 @@ import yhh.tinklabstest.util.Utilities;
 /**
  * Data loader task
  */
-class LoadDataTask extends AsyncTask<Void, Void, List<BaseType>> {
+public class LoadDataTask extends AsyncTask<String, Void, List<BaseType>> {
 
     interface Callback {
         void onLoadFinish(List<BaseType> items);
@@ -29,21 +29,19 @@ class LoadDataTask extends AsyncTask<Void, Void, List<BaseType>> {
 
     private final WeakReference<Context> mContext;
     private final WeakReference<Callback> mCallback;
-    private final String mFileName;
 
-    LoadDataTask(Context context, Callback cb, String fileName) {
+    public LoadDataTask(Context context, Callback cb) {
         mContext = new WeakReference<>(context);
         mCallback = new WeakReference<>(cb);
-        mFileName = fileName;
     }
 
     @Override
-    protected List<BaseType> doInBackground(Void... voids) {
+    protected List<BaseType> doInBackground(String... strings) {
         List<BaseType> rtn = new ArrayList<>();
         final Context context = mContext.get();
         if (context == null) return rtn;
         try {
-            rtn = load();
+            rtn = generateList(loadRawData(strings));
         } catch (IOException | JSONException e) {
             e.printStackTrace();
         }
@@ -57,10 +55,19 @@ class LoadDataTask extends AsyncTask<Void, Void, List<BaseType>> {
         callback.onLoadFinish(baseTypes);
     }
 
-    private List<BaseType> load() throws IOException, JSONException {
+    /**
+     * override if app want to load data from other resources
+     */
+    private String loadRawData(String... strings) throws IOException {
+        return Utilities.readStringFromAssets(mContext.get(), strings[0]);
+    }
+
+    /**
+     * override if app want to load data from other resources
+     */
+    public List<BaseType> generateList(String rawData) throws IOException, JSONException {
         List<BaseType> rtn = new ArrayList<>();
-        final String rawJSONArray = Utilities.readStringFromAssets(mContext.get(), mFileName);
-        final JSONArray jsonArray = new JSONArray(rawJSONArray);
+        final JSONArray jsonArray = new JSONArray(rawData);
         for (int i = 0; i < jsonArray.length(); ++i) {
             JSONObject jsonObject = jsonArray.getJSONObject(i);
             final String type = jsonObject.getString(BaseType.KEY_TYPE);

@@ -23,7 +23,6 @@ public class DataLoader implements LoadDataTask.Callback {
     public static final String FILE_NAME_SHOP = "shop";
 
     @IntDef({DATA_TYPE_CITY_GUIDE, DATA_TYPE_EAT, DATA_TYPE_SHOP})
-
     @interface TabType {
     }
 
@@ -66,27 +65,17 @@ public class DataLoader implements LoadDataTask.Callback {
         mCallback = new WeakReference<>(cb);
     }
 
-    @Nullable
-    private LoadDataTask getLoadDataTask(Context context, LoadDataTask.Callback cb, String fileName) {
+    private void executeLoadDataTask(Context context, LoadDataTask.Callback cb) {
         if (context == null) {
             if (DEBUG) {
                 Log.w(TAG, "failed to load, context is null");
             }
-            return null;
+            return;
         }
-        return new LoadDataTask(context, cb, fileName);
+        new LoadDataTask(context, cb).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, mAssetsFileName);
     }
 
     public void load() {
-        LoadDataTask loadDataTask = getLoadDataTask(mContext.get(), this, mAssetsFileName);
-        if (loadDataTask == null) {
-            if (DEBUG) {
-                Log.w(TAG, "failed to load, loadDataTask is null");
-            }
-            return;
-        }
-        loadDataTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-
         Callback callback = mCallback.get();
         if (callback == null) {
             if (DEBUG) {
@@ -94,6 +83,7 @@ public class DataLoader implements LoadDataTask.Callback {
             }
             return;
         }
+        executeLoadDataTask(mContext.get(), DataLoader.this);
         callback.onStartLoading();
     }
 
